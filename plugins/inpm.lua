@@ -19,7 +19,7 @@ local function chat_list(msg)
         if not data[tostring(groups)] then
                 return 'No groups at the moment'
         end
-        local message = 'List of Groups:\n*Use /join (ID) to join*\n\n '
+        local message = 'لیست گروه ها\n*Use /join (ID) to join*\n\n '
         for k,v in pairs(data[tostring(groups)]) do
                 local settings = data[tostring(v)]['settings']
                 for m,n in pairsByKeys(settings) do
@@ -42,10 +42,10 @@ local function run(msg, matches)
 	 local data = load_data(_config.moderation.data)
     if matches[1] == 'join' and data[tostring(matches[2])] then
         if is_banned(msg.from.id, matches[2]) then
-	    return 'You are banned.'
+	    return 'شما بن هستید.'
 	 end
       if is_gbanned(msg.from.id) then
-            return 'You are globally banned.'
+            return 'شما بن جهانی هستید'
       end
       if data[tostring(matches[2])]['settings']['lock_member'] == 'yes' and not is_owner2(msg.from.id, matches[2]) then
         return 'Group is private.'
@@ -78,10 +78,10 @@ end
 
 return {
     patterns = {
-      "^[/!](chats)$",
-      "^[/!](chatlist)$",
-      "^[/!](join) (.*)$",
-      "^[/!](kickme) (.*)$",
+      "^[!/*@#](chats)$",
+      "^[!/*@#](chatlist)$",
+      "^[!/*@#](join) (.*)$",
+      "^[!/*@#](kickme) (.*)$",
       "^!!tgservice (chat_add_user)$"
     },
     run = run,
