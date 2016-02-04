@@ -3,7 +3,7 @@ local function run(msg, matches)
 		local response = matches[3]
 		send_large_msg("chat#id"..matches[2], response)
 	end
-	if matches[1] == 'broadcast' then
+	if matches[1] == 'sendall' then
 		if is_sudo(msg) then -- فقط ادمین ها مجازند !
 			local data = load_data(_config.moderation.data)
 			local groups = 'groups'
@@ -18,8 +18,8 @@ local function run(msg, matches)
 end
 return {
   patterns = {
-    "^[!/*@#](broadcast) +(.+)$",
-    "^[!/*@#](bc) (%d+) (.*)$"
+    "^(sendall) +(.+)$",
+    "^(sa) (%d+) (.*)$"
   },
   run = run
 }
